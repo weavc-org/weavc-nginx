@@ -19,4 +19,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           repository: weavc/weavc-nginx/weavc-nginx
-          tag_with_sha: true
+          tag_with_ref: true

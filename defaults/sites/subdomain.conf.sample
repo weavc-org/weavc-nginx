@@ -1,0 +1,33 @@
+# example reverse proxy subdomain -> docker container 
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    # the route <subdomain>.*
+   server_name <subdomain>.*;
+
+    include /etc/nginx/ssl.conf;
+
+    client_max_body_size 0;
+
+    location / {
+
+
+        include /etc/nginx/proxy.conf;
+        resolver 127.0.0.11 valid=30s;
+
+        # container name
+        set $upstream_app <name>;
+        # port application is hosted on inside container i.e. 80, 8080...
+        set $upstream_port <port>;
+        # protocol app is using
+        set $upstream_proto http;
+
+        # pass request to container
+        proxy_pass $upstream_proto://$upstream_app:$upstream_port;
+
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection upgrade;
+    }
+}

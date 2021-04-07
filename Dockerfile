@@ -21,3 +21,4 @@ COPY *.conf ./
 VOLUME /sites
 VOLUME /certs
 
+LABEL org.opencontainers.image.source=https://github.com/weavc/weavc-nginx

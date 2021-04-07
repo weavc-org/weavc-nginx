@@ -31,3 +31,12 @@ jobs:
           repository: weavc/weavc-nginx/alpine
           dockerfile: Dockerfile.alpine
           tag_with_ref: true
+      - name: Publish ghcr
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          repository: weavc/weavc-nginx
+          dockerfile: Dockerfile
+          tag_with_ref: true

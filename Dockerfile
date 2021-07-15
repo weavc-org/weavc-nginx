@@ -3,7 +3,7 @@ WORKDIR /etc/nginx
 
 # setup imaged
 RUN \
-mkdir -p /certs /sites /defaults && \
+mkdir -p /sites /defaults /run/secrets && \
 rm -f /etc/nginx/conf.d/default.conf
 
 # copy scripts and set to executable in docker-entrypoint.d/
@@ -19,6 +19,5 @@ COPY defaults/ /
 COPY *.conf ./
 
 VOLUME /sites
-VOLUME /certs
 
 LABEL org.opencontainers.image.source=https://github.com/weavc/weavc-nginx

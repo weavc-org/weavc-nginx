@@ -22,15 +22,6 @@ jobs:
           registry: docker.pkg.github.com
           repository: weavc/weavc-nginx/main
           tag_with_ref: true
-      - name: Publish Docker
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: weavc/weavc-nginx/alpine
-          dockerfile: Dockerfile.alpine
-          tag_with_ref: true
       - name: Publish ghcr
         uses: docker/build-push-action@v1
         with:

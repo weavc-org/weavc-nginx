@@ -15,7 +15,7 @@ The configuration for the container should be handled via the following mount po
 
 A default `dhparams.pem` file is supplied and you can generate new ssl certificates using `SSL_GENERATE=yes` environment variable at runtime, but this is only recommended in a local dev environment.
 
-The contents of the `defaults/` directory is copied into the root directory of the container, so if you are building the image yourself, files added in there will be pulled through and used by the container.
+The contents of the `defaults/` directory is copied into the root directory of the container at runtime, so if you are building the image yourself files added in there will be pulled through and used by the container if no other file is supplied.
 
 When using this as a docker service, configuration should be handled via docker secrets and docker config, this makes the container stateless while also not having to build it for one specific usage case.
 
@@ -59,7 +59,7 @@ Compose:
 ```
 services:
 
-  nginx:
+  weavc-nginx:
     image: ghcr.io/weavc/weavc-nginx:latest
     ports:
       - "80:80"
